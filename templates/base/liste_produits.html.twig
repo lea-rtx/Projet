@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }}Liste des Produits
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+	<h2 class="text-center text-secondary mb-4 pb-4 display-2">
+		<font size="10">
+            Liste des Produits
+        </font>
+    </h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 bg-white p-4 m-0 text-primary">
+                <div class="table-responsive">
+					<h2 class="text-center text-secondary mt-4">
+						Produits Enfants
+						<a href="{{ path('app_ajouter_produit_enfant') }}" class="btn btn-outline-dark ms-3">
+							<i class="bi bi-plus-square"></i> Ajouter
+						</a>
+					</h2>
+                    <table class="table table-hover mb-5">
+                        <thead>
+                            <tr class="fw-bold text-primary">
+                                <th scope="col">Nom</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lunette in lunettes_e %}
+                                <tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
+                                    <td>{{ lunette.nom | capitalize }}</td>
+                                    <td>{{ lunette.description | capitalize }}</td>
+                                    <td>{{ lunette.prix }}</td>
+                                    <td>{{ lunette.image }}</td>
+                                    <td>
+                                        <a href="{{ path('app_modifier_produit_enfant', {'id': lunette.id}) }}">
+                                            <i class="bi bi-pen-fill text-dark"></i>
+                                        </a>
+                                        <a href="{{ path('app_supprimer_produit_enfant', {'id': lunette.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
+                                            <i class="bi bi-x-circle text-danger"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <hr class="my-5">
+
+                    <h2 class="text-center text-secondary mt-4">
+                        Produits Femmes
+						<a href="{{ path('app_ajouter_produit_femme') }}" class="btn btn-outline-dark ms-3">
+							<i class="bi bi-plus-square"></i> Ajouter
+						</a>
+                    </h2>
+                    <table class="table table-hover mb-5">
+                        <thead>
+                            <tr class="fw-bold text-primary">
+                                <th scope="col">Nom</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lunette in lunettes_f %}
+                                <tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
+                                    <td>{{ lunette.nom | capitalize }}</td>
+                                    <td>{{ lunette.description | capitalize }}</td>
+                                    <td>{{ lunette.prix }}</td>
+                                    <td>{{ lunette.image }}</td>
+                                    <td>
+                                        <a href="{{ path('app_modifier_produit_femme', {'id': lunette.id}) }}">
+                                            <i class="bi bi-pen-fill text-dark"></i>
+                                        </a>
+                                        <a href="{{ path('app_supprimer_produit_femme', {'id': lunette.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
+                                            <i class="bi bi-x-circle text-danger"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <hr class="my-5">
+
+                    <h2 class="text-center text-secondary mt-4">
+                        Produits Hommes
+						<a href="{{ path('app_ajouter_produit_homme') }}" class="btn btn-outline-dark ms-3">
+							<i class="bi bi-plus-square"></i> Ajouter
+						</a>
+                    </h2>
+                    <table class="table table-hover mb-5">
+                        <thead>
+                            <tr class="fw-bold text-primary">
+                                <th scope="col">Nom</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lunette in lunettes_h %}
+                                <tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
+                                    <td>{{ lunette.nom | capitalize }}</td>
+                                    <td>{{ lunette.description | capitalize }}</td>
+                                    <td>{{ lunette.prix }}</td>
+                                    <td>{{ lunette.image }}</td>
+                                    <td>
+                                        <a href="{{ path('app_modifier_produit_homme', {'id': lunette.id}) }}">
+                                            <i class="bi bi-pen-fill text-dark"></i>
+                                        </a>
+                                        <a href="{{ path('app_supprimer_produit_homme', {'id': lunette.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
+                                            <i class="bi bi-x-circle text-danger"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

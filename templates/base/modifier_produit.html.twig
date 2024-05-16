@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }}Modifier le produit
+{% endblock %}
+{% block body %}
+<div class="container-fluid">
+	<h2 class="text-center text-secondary mb-4 pb-4 display-2">
+    	<font size="10">
+            Modifier le produit
+        </font>
+    </h2>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 bg-white p-4 m-0 text-primary rounded shadow-sm">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">{{ form.vars.data.nom }}</h2>
+            </div>
+            {{ form_start(form, {'attr': {'class': 'mt-4'}}) }}
+                {{ form_row(form.nom, {'attr': {'class': 'form-control'}, 'label_attr': {'class': 'fw-bold'}}) }}
+                {{ form_row(form.description, {'attr': {'class': 'form-control', 'rows': 7}, 'label_attr': {'class': 'fw-bold'}}) }}
+                {{ form_row(form.prix, {'attr': {'class': 'form-control'}, 'label_attr': {'class': 'fw-bold'}}) }}
+                {{ form_row(form.image, {'attr': {'class': 'form-control'}, 'label_attr': {'class': 'fw-bold'}}) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

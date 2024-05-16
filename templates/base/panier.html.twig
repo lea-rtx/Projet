@@ -1,5 +1,54 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{parent()}}Panier{% endblock %}
+
+{% block title %}
+    {{ parent() }}Panier
+{% endblock %}
+
 {% block body %}
-<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">PANIER</h1>
+    	<h2 class="text-center text-secondary mb-4 pb-4 display-2">
+        	<font size="10">
+                Panier
+            </font>
+        </h2>
+    {% if panier is empty %}
+        <p class="text-center">Vous n'avez rien dans le panier.</p>
+    {% else %}
+        <div class="row row-cols-md-3">
+            {% for produit in panier %}
+                <div class="col text-primary">
+                    <center> 
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <div class="card" style="width: 18rem;">
+                                {% set image = 'image/' ~ produit.image %}
+                                <img src="{{ asset(image) }}" class="card-img-top" alt="...">
+                                <div class="card-body">					
+                                    <h5 class="card-title">{{ produit.nom }}</h5>
+                                    <p class="card-text">{{ produit.prix }}€</p>
+                                </div>
+							<a class="btn btn-primary" href="{{ path('app_panier_supprimer', {'id': produit.id})}}" role="button">
+								<i class="bi bi-archive-fill" title="poubelle"></i>
+							</a>
+                            </div>
+                        {% endif %}
+                    </center>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="text-center mt-4 pt-4">
+        <h1 id="prix-total"></h3>
+    </div>
+
+<script>
+    const prixElements = document.querySelectorAll('.card-text');
+    let prixTotal = 0;
+    prixElements.forEach((element) => {
+        const prix = parseFloat(element.textContent);
+        prixTotal += prix;
+    });
+    const prixTotalElement = document.getElementById('prix-total');
+    prixTotalElement.textContent = `Prix total : ${prixTotal.toFixed(2)}€`;
+	prixTotalElement.style.color = "white";
+
+</script>
 {% endblock %}

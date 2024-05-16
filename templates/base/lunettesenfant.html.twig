@@ -1,5 +1,43 @@
-{% extends 'base.html.twig' %}
-{% block title %}{{parent()}}Lunettes pour enfant{% endblock %}
+{% extends './base.html.twig' %}
+{% block title %}
+	{{parent()}}Lunettes pour enfant
+{% endblock %}
 {% block body %}
-<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">LUNETTES POUR ENFANT</h1>
+	<h2 class="text-center text-secondary mb-4 pb-4 display-2">
+		<font size="10">
+			Lunettes pour enfant
+		</font>
+	</h2>
+	<div class="row row-cols-md-3">
+		{% for enfant in enfants %}
+			<div class="col text-primary">
+			<center> 
+				<div class="card" style="width: 18rem;">
+					{% set image = 'image/'~ enfant.image %}
+					<img src="{{asset(image)}}" class="card-img-top" alt="...">
+					<div class="card-body">					
+						<h5 class="card-title">{{enfant.nom}}</h5>
+						<p class="card-text">{{enfant.description}}</p>
+						<p class="card-text">{{enfant.prix}}€</p>
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						{% if enfant in app.user.aimer %}
+							<a class="btn btn-primary" href="{{path('app_favoris_enfant',{'id':enfant.id})}}" role="button">
+								<i class="bi bi-star-fill" title="aimer"></i>
+							</a>
+							{% else %}
+							<a class="btn btn-primary" href="{{path('app_favoris_enfant',{'id':enfant.id})}}" role="button">
+								<i class="bi bi-star" title="aimer"></i>
+							</a>
+
+							{% endif %}
+							<a class="btn btn-primary" href="{{path('app_panier_enfant',{'id':enfant.id})}}" role="button">
+								<i class="bi bi-bag" title="panier"></i>
+							</a>
+						{% endif %}
+					</div>
+				</div>
+        	</center>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

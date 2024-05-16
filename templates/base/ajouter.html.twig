@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un produit enfant{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="my-4">Ajouter un produit</h1>
+    <div class="col-12 col-md-8 bg-white p-4 m-0 text-primary rounded shadow-sm mx-auto">
+
+        <div class="row">
+            <div class="">
+                {{ form_start(form) }}
+                
+                <div class="form-group">
+                    {{ form_row(form.nom) }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form_row(form.description) }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form_row(form.prix) }}
+                </div>
+
+                <br>
+                <br>
+                
+                <div class="form-group">
+                    {{ form_row(form.image) }}
+                </div>
+
+                <br>
+                <br>
+                
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
